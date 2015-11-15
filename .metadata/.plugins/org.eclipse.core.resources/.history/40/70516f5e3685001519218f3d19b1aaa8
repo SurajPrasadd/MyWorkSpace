@@ -1,0 +1,30 @@
+package com.example.http;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.ImageView;
+
+public class MainActivity extends Activity {
+	
+	ImageView im;
+	String[] url={"https://www.wonderplugin.com/wp-content/plugins/wonderplugin-lightbox/images/demo-image0.jpg"};
+	//String[] url={"http://www.nanoant.com/images/posts/drawit-domek.png"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        im=(ImageView) findViewById(R.id.imageView1);
+        
+        
+        kanna ka=new kanna(MainActivity.this,im);
+        
+        ka.execute(url);
+    }
+
+
+  
+
+}

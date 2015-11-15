@@ -1,0 +1,37 @@
+package com.example.http;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+	
+	ImageView im;
+	TextView t1,t2,t3,t4,t5;
+	String[] url={"http://api.openweathermap.org/data/2.5/weather?q=Bangalore,India&appid=bd82977b86bf27fb59a04b61b657fb6f"};
+	//String[] url={"http://www.nanoant.com/images/posts/drawit-domek.png"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        //im=(ImageView) findViewById(R.id.imageView1);
+        t1=(TextView) findViewById(R.id.textView1);
+        t2=(TextView) findViewById(R.id.textView2);
+        t3=(TextView) findViewById(R.id.textView3);
+        t4=(TextView) findViewById(R.id.textView4);
+        t5=(TextView) findViewById(R.id.textView5);
+        
+        
+        kanna ka=new kanna(MainActivity.this,t1,t2,t3,t4,t5);
+        
+        ka.execute(url);
+    }
+
+
+  
+
+}

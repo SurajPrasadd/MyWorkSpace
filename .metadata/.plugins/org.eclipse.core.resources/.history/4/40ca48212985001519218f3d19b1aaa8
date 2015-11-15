@@ -1,0 +1,24 @@
+package com.example.http;
+
+import java.net.URL;
+
+import android.os.AsyncTask;
+
+public class kanna extends AsyncTask<String,Void,Void> {
+	
+
+	public kanna(MainActivity mainActivity) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected Void doInBackground(String... arg0) {
+		URL url=new URL(arg0[0]);
+		
+		
+		return null;
+	}
+	
+	
+
+}

@@ -1,0 +1,95 @@
+package com.example.http;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import org.json.JSONObject;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class kanna extends AsyncTask<String,Void,Void> {
+	
+	ImageView im;
+	Bitmap bit;
+	TextView t1,t2,t3,t4,t5;
+	String city,cod,pree,temp;
+	
+
+
+	public kanna(MainActivity mainActivity, TextView t1, TextView t2,
+			TextView t3, TextView t4, TextView t5) {
+		this.t1=t1;
+		this.t2=t2;
+		this.t3=t3;
+		this.t4=t4;
+		this.t5=t5;
+		
+	}
+
+	@Override
+	protected Void doInBackground(String... arg0) {
+		try {
+			URL ur=new URL(arg0[0]);
+			HttpURLConnection urlc=(HttpURLConnection) ur.openConnection();
+			InputStream is=urlc.getInputStream();
+			InputStreamReader ips=new InputStreamReader(is);
+			BufferedReader br=new BufferedReader(ips);	
+			
+			StringBuffer sr=new StringBuffer();
+			String line="";
+			while((line = br.readLine())!= null)
+			{
+				sr.append(line+"\r\n");
+			}
+			
+			String s=sr.toString();
+			
+			JSONObject js=new JSONObject(s);
+			city=js.getString("name");
+			
+			
+			JSONObject  o=js.getJSONObject("main");
+			 temp=o.getString("temp");
+			 pree=o.getString("pressure");
+			
+			
+			
+			//bit=BitmapFactory.decodeStream(is);
+			
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+		return null;
+	}
+
+	@Override
+	protected void onPostExecute(Void result) {
+		// TODO Auto-generated method stub
+		super.onPostExecute(result);
+		im.setImageBitmap(bit);
+		t1.setText(city);
+		t2.setText(cod);
+		t3.setText(temp);
+		t4.setText(pree);
+		
+	}
+	
+	
+
+}
